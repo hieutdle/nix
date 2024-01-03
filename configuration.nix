@@ -124,6 +124,8 @@
     catppuccin-gtk
     bibata-cursors
     tela-circle-icon-theme
+    discord
+    betterdiscordctl
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
