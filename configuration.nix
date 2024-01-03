@@ -104,6 +104,7 @@
     wget
     git
     gh
+    home-manager
     kitty
     starship
     fzf
