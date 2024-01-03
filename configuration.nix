@@ -102,7 +102,6 @@
     # The Nano editor is installed by default.
     vim  
     wget
-    home-manager
     git
     gh
     kitty
