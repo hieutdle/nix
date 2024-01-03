@@ -83,10 +83,6 @@
     isNormalUser = true;
     description = "Hieu Le";
     extraGroups = [ "networkmanager" "wheel" ];
-    packages = with pkgs; [
-      firefox
-    #  thunderbird
-    ];
   };
 
   # Enable automatic login for the user.
@@ -107,9 +103,27 @@
     vim  
     wget
     home-manager
+    git
+    gh
     kitty
-    ungoogled-chromium
+    starship
+    fzf
+    firefox
+    thunderbird
+    vscode-fhs
+    obsidian
+    docker-compose
+    gnome.gnome-tweaks
+    telegram-desktop
+    youtube-music
     gnomeExtensions.dash-to-dock
+    gnomeExtensions.arcmenu
+    gnomeExtensions.clipboard-history
+    gnomeExtensions.burn-my-windows
+    gnome.gnome-themes-extra
+    catppuccin-gtk
+    bibata-cursors
+    tela-circle-icon-theme
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -138,9 +152,6 @@
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "23.11"; # Did you read the comment?
- 
-  # Hyprland
-  programs.hyprland.enable = true;
 
   # kitty
   programs.zsh.enable = true;
@@ -148,4 +159,21 @@
 
   # Home Manager
   nix.settings.trusted-users = [ "hieule" ];
+  nix.settings.allowed-users = [ "hieule" ];
+
+ # Font
+ fonts.packages = with pkgs; [
+    source-code-pro
+    fira-code
+    fira-code-nerdfont
+    jetbrains-mono
+ ];
+ 
+ # Docker 
+ virtualisation.docker.enable = true;
+ 
+ # Additional setting for Vscode and Obsidian
+ nixpkgs.config.permittedInsecurePackages = [
+    "electron-25.9.0"
+ ];
 }
