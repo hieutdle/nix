@@ -174,6 +174,11 @@
  # Docker 
  virtualisation.docker.enable = true;
  
+ i18n.inputMethod = {
+  enabled = "ibus";
+  ibus.engines = with pkgs.ibus-engines; [ bamboo ];
+ };
+
  # Additional setting for Vscode and Obsidian
  nixpkgs.config.permittedInsecurePackages = [
     "electron-25.9.0"

@@ -73,8 +73,9 @@
     enable = true;
     shellAliases = {
         update = "sudo nixos-rebuild switch";
-        cpconfig = "cp /etc/nixos/configuration.nix ~/configuration.nix";
-        cphome = "cp ~/.config/home-manager/home.nix ~/home.nix";
+        cpconfig = "cp /etc/nixos/configuration.nix ~/projects/nixos-config/configuration.nix";
+        cphome = "cp ~/.config/home-manager/home.nix ~/projects/nixos-config/home.nix";
+        cpsetup = "cp ~/setup.sh ~/projects/nixos-config/setup.sh";
         nanoconfig = "sudo nano /etc/nixos/configuration.nix";
         nanohome = "sudo nano ~/.config/home-manager/home.nix";
         codehome = "code ~/.config/home-manager/home.nix";
