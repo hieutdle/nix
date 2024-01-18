@@ -120,12 +120,17 @@
     gnomeExtensions.arcmenu
     gnomeExtensions.clipboard-history
     gnomeExtensions.burn-my-windows
+    gnomeExtensions.forge
     gnome.gnome-themes-extra
     catppuccin-gtk
     bibata-cursors
     tela-circle-icon-theme
+    librewolf
     discord
     betterdiscordctl
+    jdk8
+    lshw
+    google-chrome
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -139,14 +144,17 @@
   # List services that you want to enable:
 
   # Enable the OpenSSH daemon.
-  # services.openssh.enable = true;
+  services.openssh.enable = true;
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
+  
+  networking.nat.enable = true;
+ 
 
+  
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
   # on your system were taken. It‘s perfectly fine and recommended to leave
@@ -183,4 +191,66 @@
  nixpkgs.config.permittedInsecurePackages = [
     "electron-25.9.0"
  ];
+ 
+ networking.extraHosts = ''
+  # Pi Cluster
+  10.0.0.1    node01
+  10.0.0.2    node02
+  10.0.0.3    node03
+  10.0.0.4    node04
+  10.0.0.5    node05
+  '';
+  
+ # Enable nvidia drivers
+ # Enable OpenGL
+  hardware.opengl = {
+    enable = true;
+    driSupport = true;
+    driSupport32Bit = true;
+  };
+
+  # Load nvidia driver for Xorg and Wayland
+  services.xserver.videoDrivers = ["nvidia"];
+
+  hardware.nvidia = {
+
+    # Modesetting is required.
+    modesetting.enable = true;
+
+    # Nvidia power management. Experimental, and can cause sleep/suspend to fail.
+    powerManagement.enable = false;
+    # Fine-grained power management. Turns off GPU when not in use.
+    # Experimental and only works on modern Nvidia GPUs (Turing or newer).
+    powerManagement.finegrained = false;
+
+    # Use the NVidia open source kernel module (not to be confused with the
+    # independent third-party "nouveau" open source driver).
+    # Support is limited to the Turing and later architectures. Full list of 
+    # supported GPUs is at: 
+    # https://github.com/NVIDIA/open-gpu-kernel-modules#compatible-gpus 
+    # Only available from driver 515.43.04+
+    # Currently alpha-quality/buggy, so false is currently the recommended setting.
+    open = false;
+
+    # Enable the Nvidia settings menu,
+	# accessible via `nvidia-settings`.
+    nvidiaSettings = true;
+
+    # Optionally, you may need to select the appropriate driver version for your specific GPU.
+    package = config.boot.kernelPackages.nvidiaPackages.stable;
+
+    prime   = {
+      #sync.enable = true;          # Enable Hybrid Graphics
+      offload.enable = true;        # Enable PRIME offloading
+      offload.enableOffloadCmd = true;
+      amdgpuBusId    = "PCI:8:0:0"; # lspci | grep VGA | grep AMD
+      nvidiaBusId    = "PCI:1:0:0"; # lspci | grep VGA | grep NVIDIA
+    };
+  };
+ #steam
+ programs.steam = {
+  enable = true;
+  remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
+  dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
+ };
 }
