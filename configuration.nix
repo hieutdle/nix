@@ -120,7 +120,7 @@
     gnomeExtensions.arcmenu
     gnomeExtensions.clipboard-history
     gnomeExtensions.burn-my-windows
-    gnomeExtensions.forge
+    gnomeExtensions.paperwm
     gnome.gnome-themes-extra
     catppuccin-gtk
     bibata-cursors
@@ -173,6 +173,7 @@
 
  # Font
  fonts.packages = with pkgs; [
+    (nerdfonts.override { fonts = [ "JetBrainsMono"]; })
     source-code-pro
     fira-code
     fira-code-nerdfont

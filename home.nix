@@ -95,7 +95,7 @@
 
   programs.kitty = {
     enable = true;
-    font.name = "FiraCode Nerd Font Bold";
+    font.name = "JetBrainsMono NF Bold";
     font.size = 16;
   };
   
@@ -116,15 +116,3 @@
  
   home.enableNixpkgsReleaseCheck = false;
 }
-  
- let
-  nix-alien-pkgs = import (
-  builtins.fetchTarball "https://github.com/thiagokokada/nix-alien/tarball/master"
-  ) { };
- in
- {
-   # ...
-   home.packages = with nix-alien-pkgs; [
-      nix-alien
-   ];
-  }
