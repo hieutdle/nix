@@ -34,7 +34,7 @@
     # (pkgs.writeShellScriptBin "my-hello" ''
     #   echo "Hello, ${config.home.username}!"
     # '')
-    ( pkgs.tela-circle-icon-theme.override { colorVariants = [ "purple" "dracula" ]; })
+    ( pkgs.tela-circle-icon-theme.override { colorVariants = ["red" "pink" "ubuntu"]; })
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage

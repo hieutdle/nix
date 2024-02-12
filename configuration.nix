@@ -131,6 +131,11 @@
     jdk8
     lshw
     google-chrome
+    mailspring
+    numix-icon-theme-circle
+    candy-icons
+    fluidsynth
+    binutils
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -191,6 +196,7 @@
  # Additional setting for Vscode and Obsidian
  nixpkgs.config.permittedInsecurePackages = [
     "electron-25.9.0"
+    "mailspring-1.12.0"     
  ];
  
  networking.extraHosts = ''
@@ -253,5 +259,10 @@
   enable = true;
   remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
   dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
+ };
+
+ xdg.portal = {
+  enable = true;
+  wlr.enable = true;
  };
 }
